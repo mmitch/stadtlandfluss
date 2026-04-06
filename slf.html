@@ -36,28 +36,37 @@
         padding-top: 2em;
         font-size: 70%;
       }
-
-      /* variable columns for main content */
-      #flexbox {
-        display: flex;
-        margin: 0 1em;
-        flex-direction: column;
-      }
       section {
-        width: 100%;
+        padding: 0 1em;
       }
-      @media (min-width: 768px) {
-        #flexbox {
-          margin: 0 3em;
-          gap: 2rem;
-          flex-direction: row;
+
+      /* variable layout for main content */
+      #grid-container {
+        /* mobile first: one column vertical */
+        display: grid;
+        grid-template:
+          "filler-left"
+          "kategorien"
+          "buchstaben"
+          "filler-right";
+      }
+      @media (min-width: 21em) {
+        /* when the max size of the sections is reached (20em) plus some global margin (~1em),
+           add the fillers to the left and right to center the single column with a fixed with of 20em */
+        #grid-container {
+          grid-template:
+            "filler-left kategorien filler-right"
+            "filler-left buchstaben filler-right"
+            / 1fr 20em 1fr;
         }
-        .filler {
-          width: 100%;
-        }
-        section {
-          min-width: 300px;
-          max-width: 400px;
+      }
+      @media (min-width: 45em) {
+        /* with enough space for both columns (don't break at 41em already, it does not look good),
+           put both sections side to side and keep the fillers */
+        #grid-container {
+          grid-template:
+            "filler-left kategorien buchstaben filler-right"
+            / 1fr 20em 20em 1fr;
         }
       }
 
@@ -110,10 +119,10 @@
       <h1>Stadt Land Fluss</h1>
     </header>
 
-    <div id="flexbox">
-      <div class="filler"></div>
+    <div id="grid-container">
+      <div style="grid-area: filler-left"></div>
 
-      <section>
+      <section style="grid-area: kategorien">
         <h2>Kategorien</h2>
         <ul>
           <li id="kategorie1">Stadt</li>
@@ -123,14 +132,14 @@
         <button onclick="wuerfeleKategorien()">🎲 Würfeln</button>
       </section>
 
-      <section>
+      <section style="grid-area: buchstaben">
         <h2>Anfangsbuchstabe</h2>
         <div id="buchstabe">?</div>
         <button onclick="wuerfeleBuchstabe()">🎲 Würfeln</button>
         <select id="buchstabenliste"></select>
       </section>
 
-      <div class="filler"></div>
+      <div style="grid-area: filler-right"></div>
     </div>
 
     <footer>
