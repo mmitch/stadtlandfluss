@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf8" />
+    <title>Stadt Land Fluss</title>
+    <style>
+      #buchstabe {
+        font-size: 1000%;
+      }
+      header,
+      footer {
+        text-align: center;
+      }
+      footer {
+        font-size: 70%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Stadt Land Fluss</h1>
+    </header>
+
+    <section>
+      <h2>Kategorien</h2>
+      <ul>
+        <li id="kategorie1">Stadt</li>
+        <li id="kategorie2">Land</li>
+        <li id="kategorie3">Fluss</li>
+      </ul>
+      <button onclick="wuerfeleKategorien()">🎲 Würfeln</button>
+    </section>
+
+    <section>
+      <h2>Anfangsbuchstabe</h2>
+      <div id="buchstabe">?</div>
+      <select id="buchstabenliste"></select>
+      <button onclick="wuerfeleBuchstabe()">🎲 Würfeln</button>
+    </section>
+
+    <footer>
+      Gebastelt bla bla blubb 2026
+      <a href="https://www.cgarbs.de">KLICK MICH</a>
+    </footer>
+  </body>
+
+  <script>
+    const kategorien = [
+      "Stadt",
+      "Land",
+      "Fluss",
+      "bei Omi",
+      "das war schon immer so",
+      "davon kann man sterben",
+      "Essen",
+      "Farbe",
+      "im Keller",
+      "in der Rumpelschublade",
+      "in der Schule",
+      "Kleidung",
+      "nervige Nachbarn",
+      "Pflanzen",
+      "Schul-/Studienfach",
+      "Tier",
+      "unter Wasser",
+      "Verkehrsmittel",
+      "Vögel",
+      "was Piraten tun",
+    ];
+
+    const buchstabenListen = [
+      {
+        name: "A-Z ohne QVXY",
+        buchstaben: [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "R",
+          "S",
+          "T",
+          "U",
+          "W",
+          "Z",
+        ],
+      },
+      {
+        name: "A-Z",
+        buchstaben: [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z",
+        ],
+      },
+      {
+        name: "A-Z plus ÄÖÜ",
+        buchstaben: [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z",
+          "Ä",
+          "Ö",
+          "Ü",
+        ],
+      },
+    ];
+
+    // befülle die Buchstabenlisten-Auswahl
+    buchstabenListen.forEach((buchstabenListe) => {
+      const option = document.createElement("option");
+      const text = document.createTextNode(buchstabenListe.name);
+      option.appendChild(text);
+      document.getElementById("buchstabenliste").appendChild(option);
+    });
+
+    function gibAusListe(liste) {
+      return liste[Math.floor(Math.random() * liste.length)];
+    }
+
+    function wuerfeleKategorien() {
+      ["kategorie1", "kategorie2", "kategorie3"].forEach(
+        (id) =>
+          (document.getElementById(id).textContent = gibAusListe(kategorien)),
+      );
+    }
+
+    function wuerfeleBuchstabe() {
+      const auswahl = document.getElementById("buchstabenliste").selectedIndex;
+      const buchstabenListe = buchstabenListen[auswahl];
+      const neuerBuchstabe = gibAusListe(buchstabenListe.buchstaben);
+      document.getElementById("buchstabe").textContent = neuerBuchstabe;
+    }
+  </script>
+</html>
