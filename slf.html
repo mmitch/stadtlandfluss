@@ -60,6 +60,48 @@
           max-width: 400px;
         }
       }
+
+      /* colors */
+      :root {
+        --color-bg: #f7f2d4;
+        --color-fg: #483b3f;
+        --color-fg-light: #81777a;
+        --color-button-bg: #247771;
+        --color-button-fg: #f7f2d4;
+        --color-link: #247771;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-bg: #483b3f;
+          --color-fg: #f7f2d4;
+          --color-fg-light: #9d9a88;
+          --color-button-bg: #3286c0;
+          --color-button-fg: #f7f2d4;
+          --color-link: #3498db;
+        }
+      }
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-fg);
+      }
+      footer {
+        color: var(--color-fg-light);
+      }
+      a {
+        color: var(--color-link);
+      }
+      button,
+      select {
+        background-color: var(--color-button-bg);
+        color: var(--color-button-fg);
+        border: none;
+        padding: 0.5em 0.7em;
+        cursor: pointer;
+        border-radius: 0.4em;
+      }
+      button {
+        font-weight: bold;
+      }
     </style>
   </head>
 
