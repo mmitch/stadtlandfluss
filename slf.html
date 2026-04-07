@@ -24,9 +24,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Stadt Land Fluss</title>
     <style>
+      body {
+        margin: 1em;
+      }
       #buchstabe {
-        font-size: 1000%;
-        margin-left: 0.3em;
+        font-size: 900%;
       }
       header,
       footer {
@@ -37,7 +39,16 @@
         font-size: 70%;
       }
       section {
+        text-align: center;
         padding: 0 1em;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      ul > li {
+        padding-bottom: 0.5em;
+        line-height: 95%;
       }
 
       /* variable layout for main content */
@@ -50,23 +61,23 @@
           "buchstaben"
           "filler-right";
       }
-      @media (min-width: 21em) {
-        /* when the max size of the sections is reached (20em) plus some global margin (~1em),
-           add the fillers to the left and right to center the single column with a fixed with of 20em */
+      @media (min-width: 27em) {
+        /* when the max size of the sections is reached (25em) plus some global margin (2*1em),
+           add the fillers to the left and right to center the single column with a fixed width of 25em */
         #grid-container {
           grid-template:
             "filler-left kategorien filler-right"
             "filler-left buchstaben filler-right"
-            / 1fr 20em 1fr;
+            / 1fr 25em 1fr;
         }
       }
-      @media (min-width: 45em) {
-        /* with enough space for both columns (don't break at 41em already, it does not look good),
+      @media (min-width: 55em) {
+        /* with enough space for both columns (don't break at 52em yet, it does not look good),
            put both sections side to side and keep the fillers */
         #grid-container {
           grid-template:
             "filler-left kategorien buchstaben filler-right"
-            / 1fr 20em 20em 1fr;
+            / 1fr 25em 25em 1fr;
         }
       }
 
